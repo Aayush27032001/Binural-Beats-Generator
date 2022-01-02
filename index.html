@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binural Beats</title>
+</head>
+
+<body>
+
+    <button id="start-left" onClick=startLeft()>Start Left</button>
+    <button id="start-right" onClick=startRight()>Start Right</button>
+    <button onClick=stop()>Stop</button>
+    <input type="number" id="leftFrequency" placeholder="Left Frequency" />
+    <input type="number" id="RightFrequency" placeholder="Right Frequency" />
+
+    <script>
+        var audioCtx = new AudioContext();
+
+        var oscillator = audioCtx.createOscillator();
+        function startLeft() {
+            var panner = audioCtx.createStereoPanner();
+            oscillator.type = 'sine';
+            oscillator.frequency.value = 0; // value in hertz
+            oscillator.connect(panner);
+            panner.connect(audioCtx.destination);
+            try {
+                oscillator.start();
+            }
+            catch (err) {
+
+            }
+            panner.pan.value = -1;
+            document.querySelector("#leftFrequency").oninput = function () {
+                oscillator.frequency.value = +this.value;
+            };
+            document.getElementById("start-left").setAttribute("disabled", "");
+        }
+
+        var oscillator1 = audioCtx.createOscillator();
+        function startRight() {
+            var panner = audioCtx.createStereoPanner();
+            oscillator1.type = 'sine';
+            oscillator1.frequency.value = 0; // value in hertz
+            oscillator1.connect(panner);
+            panner.connect(audioCtx.destination);
+            try {
+                oscillator1.start();
+            }
+            catch (err) {
+
+            }
+            panner.pan.value = 1;
+            document.querySelector("#RightFrequency").oninput = function () {
+                oscillator1.frequency.value = +this.value;
+            };
+            document.getElementById("start-right").setAttribute("disabled", "");
+        }
+
+
+        function stop() {
+            oscillator.disconnect();
+            oscillator1.disconnect();
+            document.getElementById("start-left").removeAttribute("disabled", "");
+            document.getElementById("start-right").removeAttribute("disabled", "");
+        }
+    </script>
+</body>
+
+</html>

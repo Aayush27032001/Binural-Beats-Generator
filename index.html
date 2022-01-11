@@ -6,16 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binural Beats</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="container">
+        <div class="app-container">
+            <div class="left">
+                <div class="left-container">
+                    <div class="left-items">
+                        <div class="input">
+                            <input type="number" id="leftFrequency" placeholder="Enter Left Frequency" />
+                            <input type="number" id="RightFrequency" placeholder="Enter Right Frequency" />
+                        </div>
+                        <div class="controls">
+                            <button id="start-left" onClick=startLeft()>Start Left</button>
+                            <button id="stop-btn" onClick=stop()>Stop</button>
+                            <button id="start-right" onClick=startRight()>Start Right</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
 
-    <button id="start-left" onClick=startLeft()>Start Left</button>
-    <button id="start-right" onClick=startRight()>Start Right</button>
-    <button onClick=stop()>Stop</button>
-    <input type="number" id="leftFrequency" placeholder="Left Frequency" />
-    <input type="number" id="RightFrequency" placeholder="Right Frequency" />
-
+            </div>
+        </div>
+    </div>
     <script>
         var audioCtx = new AudioContext();
 

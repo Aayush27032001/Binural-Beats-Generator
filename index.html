@@ -39,7 +39,7 @@
         function startLeft() {
             var panner = audioCtx.createStereoPanner();
             oscillator.type = 'sine';
-            oscillator.frequency.value = 0; // value in hertz
+            oscillator.frequency.value = document.getElementById("leftFrequency").value; // value in hertz
             oscillator.connect(panner);
             panner.connect(audioCtx.destination);
             try {
@@ -59,7 +59,7 @@
         function startRight() {
             var panner = audioCtx.createStereoPanner();
             oscillator1.type = 'sine';
-            oscillator1.frequency.value = 0; // value in hertz
+            oscillator1.frequency.value = document.getElementById("RightFrequency").value; // value in hertz
             oscillator1.connect(panner);
             panner.connect(audioCtx.destination);
             try {
